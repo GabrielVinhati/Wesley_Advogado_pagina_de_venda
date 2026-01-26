@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jornada Trabalhista na Prática | Curso Online</title>
+
+  <!-- Favicon (troque se quiser) -->
+  <link rel="icon" href="img/lawyer_86193.webp" type="image/png" />
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Montserrat', 'ui-sans-serif', 'system-ui'] },
+          colors: {
+            brand: {
+              orange: '#FF5722',
+              green: '#25D366',
+              dark: '#050505',
+              dark2: '#0a0a0a',
+              gray: '#b9b9b9'
+            }
+          },
+          keyframes: {
+            glow: {
+              '0%,100%': { boxShadow: '0 0 0 rgba(255,87,34,0.0)' },
+              '50%': { boxShadow: '0 0 35px rgba(255,87,34,0.55)' }
+            },
+            floaty: {
+              '0%': { transform: 'translateY(0px)' },
+              '100%': { transform: 'translateY(14px)' }
+            }
+          },
+          animation: {
+            glow: 'glow 1.8s ease-in-out infinite',
+            floaty: 'floaty 2.4s ease-in-out infinite alternate'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Animate.css (pulse etc.) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+  <!-- AOS (animações ao rolar) -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    /* pequenos ajustes não cobertos pelo tailwind */
+    .glass {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.10);
+      backdrop-filter: blur(10px);
+    }
+    .shadow-soft { box-shadow: 0 20px 50px rgba(0,0,0,0.55); }
+    .text-balance { text-wrap: balance; }
+    /* scrollbar suave no cronograma */
+    .nice-scroll::-webkit-scrollbar { height: 10px; width: 10px; }
+    .nice-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 999px; }
+    .nice-scroll::-webkit-scrollbar-track { background: rgba(255,255,255,0.04); border-radius: 999px; }
+  </style>
+</head>
+
+<body class="bg-brand-dark text-white font-sans overflow-x-hidden">
+  <!-- ======= CONFIG RÁPIDA (troque aqui) ======= -->
+  <script>
+    const PURCHASE_URL = "https://pay.hotmart.com/SEU-LINK-AQUI"; // <-- TROQUE
+    const WHATSAPP_NUMBER = "5527997692629"; // <-- TROQUE (somente números)
+    const HERO_BG_URL = "https://raw.githubusercontent.com/GabrielVinhati/img-wesley/refs/heads/main/Design%20sem%20nome%20(24).png"; // <-- TROQUE se quiser
+    const TEACHER_BG_URL = "https://raw.githubusercontent.com/GabrielVinhati/img-wesley/refs/heads/main/Design%20sem%20nome.png"; // <-- opcional
+  </script>
+
+  <!-- Top bar -->
+  <div class="w-full bg-red-700 text-white text-center py-2 text-sm sm:text-base font-extrabold uppercase tracking-wider">
+    Curso online e gravado • Acesso vitalício • Garantia de 30 dias
+  </div>
+
+  <!-- Header -->
+  <header id="header" class="sticky top-0 z-[60] bg-black/55 backdrop-blur border-b border-white/10">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+      <a href="#topo" class="flex items-center gap-3">
+        <div class="h-10 w-10 rounded-xl bg-brand-orange/15 border border-brand-orange/35 flex items-center justify-center">
+          <i class="fa-solid fa-scale-balanced text-brand-orange"></i>
+        </div>
+        <div class="leading-tight">
+          <p class="font-extrabold tracking-tight">Jornada Trabalhista <span class="text-brand-orange">na Prática</span></p>
+          <p class="text-xs text-white/70 -mt-0.5">Curso completo de prática trabalhista</p>
+        </div>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-6 text-sm text-white/80">
+        <a class="hover:text-white" href="#beneficios">O que você recebe</a>
+        <a class="hover:text-white" href="#cronograma">Cronograma</a>
+        <a class="hover:text-white" href="#bonus">Bônus</a>
+        <a class="hover:text-white" href="#investimento">Investimento</a>
+        <a class="hover:text-white" href="#faq">FAQ</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <a id="btnHeaderBuy" href="#investimento"
+           class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-orange font-extrabold uppercase text-sm hover:scale-[1.02] transition shadow-soft">
+          <i class="fa-solid fa-bolt"></i> Garantir por R$ 997
+        </a>
+
+        <button id="btnMobileMenu" class="lg:hidden inline-flex items-center justify-center h-10 w-10 rounded-xl border border-white/15 bg-white/5">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="lg:hidden hidden border-t border-white/10 bg-black/65">
+      <div class="max-w-6xl mx-auto px-4 py-4 grid gap-3 text-sm text-white/80">
+        <a class="hover:text-white" href="#beneficios">O que você recebe</a>
+        <a class="hover:text-white" href="#cronograma">Cronograma</a>
+        <a class="hover:text-white" href="#bonus">Bônus</a>
+        <a class="hover:text-white" href="#investimento">Investimento</a>
+        <a class="hover:text-white" href="#faq">FAQ</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main id="topo">
+    <section class="relative min-h-[92vh] flex items-center">
+      <!-- Background -->
+      <div class="absolute inset-0 bg-cover bg-right" id="heroBg"></div>
+      <!-- Overlay -->
+      <div class="absolute inset-0 bg-gradient-to-r from-black/95 via-black/80 to-black/20"></div>
+
+      <div class="relative z-10 w-full">
+        <div class="max-w-6xl mx-auto px-4 py-14 grid lg:grid-cols-12 gap-10 items-center">
+          <!-- Left -->
+          <div class="lg:col-span-7" data-aos="fade-right">
+            <span class="inline-flex items-center gap-2 text-brand-orange font-extrabold uppercase tracking-[0.2em] text-xs border-b border-brand-orange/50 pb-1">
+              Curso completo • prática trabalhista real
+            </span>
+
+            <h1 class="mt-4 text-3xl sm:text-5xl font-black uppercase leading-[1.05] text-balance">
+              Jornada Trabalhista <span class="text-brand-orange">na Prática</span> <br class="hidden sm:block" />
+              para advogar com segurança e previsibilidade
+            </h1>
+
+            <p class="mt-4 text-white/75 text-base sm:text-lg leading-relaxed max-w-2xl">
+              Um curso online e gravado com foco total em <strong>atuar na prática</strong> — do reconhecimento de vínculo aos cálculos,
+              audiência, recursos, execução e modelos de petições de casos reais.
+            </p>
+
+            <!-- bullets -->
+            <div class="mt-6 grid sm:grid-cols-2 gap-3 max-w-2xl">
+              <div class="glass rounded-2xl p-4">
+                <p class="font-extrabold"><i class="fa-solid fa-clock text-brand-orange mr-2"></i>+300 horas</p>
+                <p class="text-white/70 text-sm">Aulas gravadas + atualizações vitalícias</p>
+              </div>
+              <div class="glass rounded-2xl p-4">
+                <p class="font-extrabold"><i class="fa-solid fa-file-lines text-brand-orange mr-2"></i>Modelos reais</p>
+                <p class="text-white/70 text-sm">Kit de petições trabalhistas do escritório</p>
+              </div>
+              <div class="glass rounded-2xl p-4">
+                <p class="font-extrabold"><i class="fa-solid fa-shield text-brand-orange mr-2"></i>Garantia 30 dias</p>
+                <p class="text-white/70 text-sm">Compra protegida</p>
+              </div>
+              <div class="glass rounded-2xl p-4">
+                <p class="font-extrabold"><i class="fa-brands fa-hotjar text-brand-orange mr-2"></i>Hotmart</p>
+                <p class="text-white/70 text-sm">Login e senha • computador e celular</p>
+              </div>
+            </div>
+
+            <!-- Countdown -->
+            <div class="mt-8 glass rounded-2xl p-5 border border-brand-orange/25" data-aos="fade-up">
+              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div>
+                  <p class="text-xs uppercase tracking-[0.2em] text-white/60 font-extrabold">LANÇAMENTO SEMENTE</p>
+                  <p class="text-lg font-extrabold">29/01/2026 às 20:00 (quinta-feira)</p>
+                </div>
+
+                <div class="flex items-center gap-3">
+                  <div class="text-center px-4 py-3 rounded-xl bg-brand-orange/10 border border-brand-orange/35 min-w-[84px]">
+                    <span id="d" class="block text-2xl font-black text-brand-orange">--</span>
+                    <span class="text-[11px] uppercase tracking-wider text-white/80">dias</span>
+                  </div>
+                  <div class="text-center px-4 py-3 rounded-xl bg-brand-orange/10 border border-brand-orange/35 min-w-[84px]">
+                    <span id="h" class="block text-2xl font-black text-brand-orange">--</span>
+                    <span class="text-[11px] uppercase tracking-wider text-white/80">horas</span>
+                  </div>
+                  <div class="text-center px-4 py-3 rounded-xl bg-brand-orange/10 border border-brand-orange/35 min-w-[84px]">
+                    <span id="m" class="block text-2xl font-black text-brand-orange">--</span>
+                    <span class="text-[11px] uppercase tracking-wider text-white/80">min</span>
+                  </div>
+                  <div class="text-center px-4 py-3 rounded-xl bg-brand-orange/10 border border-brand-orange/35 min-w-[84px]">
+                    <span id="s" class="block text-2xl font-black text-brand-orange">--</span>
+                    <span class="text-[11px] uppercase tracking-wider text-white/80">seg</span>
+                  </div>
+                </div>
+              </div>
+
+              <p id="timerMsg" class="mt-3 text-sm text-white/70 hidden"></p>
+            </div>
+
+            <!-- CTAs -->
+            <div class="mt-8 flex flex-col sm:flex-row gap-3 sm:items-center">
+              <a href="#investimento"
+                 class="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-2xl bg-brand-orange font-black uppercase tracking-wide hover:scale-[1.02] transition shadow-soft">
+                <i class="fa-solid fa-cart-shopping"></i>
+                Quero garantir minha vaga
+              </a>
+
+              <a id="btnHeroWpp" href="#"
+                 class="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-2xl bg-brand-green font-black uppercase tracking-wide hover:scale-[1.02] transition shadow-soft">
+                <i class="fa-brands fa-whatsapp text-xl"></i>
+                Falar no WhatsApp
+              </a>
+            </div>
+
+            <p class="mt-3 text-xs text-white/55">
+              *Promoção por tempo limitado: de R$ 1.697,00 por R$ 997,00. Resultados variam conforme execução.
+            </p>
+          </div>
+
+          <!-- Right: Promo Card -->
+          <div class="lg:col-span-5" data-aos="fade-left">
+            <div class="glass rounded-3xl p-7 shadow-soft border border-white/10 relative overflow-hidden">
+              <div class="absolute -top-20 -right-24 w-64 h-64 rounded-full bg-brand-orange/20 blur-3xl"></div>
+
+              <div class="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-brand-orange/15 border border-brand-orange/35 text-brand-orange font-extrabold text-xs uppercase tracking-wider
+                          animate__animated animate__pulse animate__infinite animate__slow">
+                <i class="fa-solid fa-tags"></i> Promoção ativa
+              </div>
+
+              <h3 class="mt-4 text-xl font-black uppercase">Investimento</h3>
+
+              <div class="mt-4">
+                <p class="text-white/70 text-sm">De <span class="line-through">R$ 1.697,00</span> por</p>
+                <div class="flex items-end gap-2">
+                  <p class="text-5xl font-black text-brand-orange">R$ 997</p>
+                  <p class="text-white/70 pb-1">à vista</p>
+                </div>
+
+                <div class="mt-4 grid gap-3">
+                  <div class="flex items-start gap-3">
+                    <div class="h-9 w-9 rounded-xl bg-brand-orange/15 border border-brand-orange/30 flex items-center justify-center">
+                      <i class="fa-solid fa-infinity text-brand-orange"></i>
+                    </div>
+                    <div>
+                      <p class="font-extrabold">Acesso vitalício</p>
+                      <p class="text-sm text-white/70">Aulas novas + atualizações + novas peças todo mês</p>
+                    </div>
+                  </div>
+
+                  <div class="flex items-start gap-3">
+                    <div class="h-9 w-9 rounded-xl bg-brand-orange/15 border border-brand-orange/30 flex items-center justify-center">
+                      <i class="fa-solid fa-medal text-brand-orange"></i>
+                    </div>
+                    <div>
+                      <p class="font-extrabold">Bônus incluídos</p>
+                      <p class="text-sm text-white/70">Mentoria (20 primeiros) + Kit Petições de casos reais</p>
+                    </div>
+                  </div>
+
+                  <div class="flex items-start gap-3">
+                    <div class="h-9 w-9 rounded-xl bg-brand-orange/15 border border-brand-orange/30 flex items-center justify-center">
+                      <i class="fa-solid fa-lock text-brand-orange"></i>
+                    </div>
+                    <div>
+                      <p class="font-extrabold">Garantia de 30 dias</p>
+                      <p class="text-sm text-white/70">Você tem 30 dias para testar sem risco</p>
+                    </div>
+                  </div>
+                </div>
+
+                <a id="btnCardBuy" href="#investimento"
+                   class="mt-6 inline-flex w-full items-center justify-center gap-2 px-6 py-4 rounded-2xl bg-brand-orange font-black uppercase tracking-wide hover:scale-[1.02] transition shadow-soft animate-glow">
+                  <i class="fa-solid fa-bolt"></i> Quero entrar na Jornada
+                </a>
+
+                <div class="mt-3 text-center text-xs text-white/55">
+                  Pagamento e acesso via Hotmart (login e senha).
+                </div>
+              </div>
+            </div>
+
+            <!-- mini social proof -->
+            <div class="mt-4 grid grid-cols-3 gap-3 text-center" data-aos="fade-up">
+              <div class="glass rounded-2xl p-4">
+                <p class="text-2xl font-black text-brand-orange">10</p>
+                <p class="text-xs text-white/70 uppercase tracking-wider">módulos</p>
+              </div>
+              <div class="glass rounded-2xl p-4">
+                <p class="text-2xl font-black text-brand-orange">+300h</p>
+                <p class="text-xs text-white/70 uppercase tracking-wider">conteúdo</p>
+              </div>
+              <div class="glass rounded-2xl p-4">
+                <p class="text-2xl font-black text-brand-orange">30d</p>
+                <p class="text-xs text-white/70 uppercase tracking-wider">garantia</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- gradient bottom fade -->
+      <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-brand-dark to-transparent"></div>
+    </section>
+
+    <!-- BENEFÍCIOS -->
+    <section id="beneficios" class="py-16 sm:py-20 bg-brand-dark2">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="text-center max-w-3xl mx-auto">
+          <span class="inline-block text-brand-orange font-extrabold uppercase tracking-[0.2em] text-xs border-b border-brand-orange/50 pb-1" data-aos="fade-up">
+            O que você vai receber
+          </span>
+          <h2 class="mt-4 text-3xl sm:text-4xl font-black uppercase" data-aos="fade-up" data-aos-delay="60">
+            Conteúdo <span class="text-brand-orange">100% prático</span> do início ao fim
+          </h2>
+          <p class="mt-4 text-white/70 leading-relaxed" data-aos="fade-up" data-aos-delay="120">
+            Do atendimento ao cliente à audiência, recursos, execução e cálculos — com modelos e materiais baseados em casos reais.
+          </p>
+        </div>
+
+        <div class="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="glass rounded-3xl p-7 hover:-translate-y-1 transition border border-white/10" data-aos="zoom-in">
+            <i class="fa-solid fa-gavel text-brand-orange text-3xl"></i>
+            <h3 class="mt-4 font-black text-lg">Prática Trabalhista Real</h3>
+            <p class="mt-2 text-white/70 text-sm leading-relaxed">Aulas objetivas para aplicar no dia a dia: petições, provas, estratégia e execução.</p>
+          </div>
+
+          <div class="glass rounded-3xl p-7 hover:-translate-y-1 transition border border-white/10" data-aos="zoom-in" data-aos-delay="60">
+            <i class="fa-solid fa-user-tie text-brand-orange text-3xl"></i>
+            <h3 class="mt-4 font-black text-lg">Para Empregados e Empresas</h3>
+            <p class="mt-2 text-white/70 text-sm leading-relaxed">Atuação completa nos dois lados: inicial, contestação, recursos e pontos críticos.</p>
+          </div>
+
+          <div class="glass rounded-3xl p-7 hover:-translate-y-1 transition border border-white/10" data-aos="zoom-in" data-aos-delay="120">
+            <i class="fa-solid fa-calculator text-brand-orange text-3xl"></i>
+            <h3 class="mt-4 font-black text-lg">Cálculos Trabalhistas</h3>
+            <p class="mt-2 text-white/70 text-sm leading-relaxed">Do art. 840 ao valor dos pedidos, FGTS, férias, 13º, horas extras, adicionais e mais.</p>
+          </div>
+
+          <div class="glass rounded-3xl p-7 hover:-translate-y-1 transition border border-white/10" data-aos="zoom-in" data-aos-delay="180">
+            <i class="fa-solid fa-video text-brand-orange text-3xl"></i>
+            <h3 class="mt-4 font-black text-lg">Plataforma Hotmart</h3>
+            <p class="mt-2 text-white/70 text-sm leading-relaxed">Acesso por login e senha. Assista e baixe materiais no PC e no celular.</p>
+          </div>
+
+          <div class="glass rounded-3xl p-7 hover:-translate-y-1 transition border border-white/10" data-aos="zoom-in" data-aos-delay="240">
+            <i class="fa-solid fa-bullhorn text-brand-orange text-3xl"></i>
+            <h3 class="mt-4 font-black text-lg">Marketing Jurídico</h3>
+            <p class="mt-2 text-white/70 text-sm leading-relaxed">Estratégia de conteúdo, tráfego (Google/Meta) e script de conversão no WhatsApp.</p>
+          </div>
+
+          <div class="glass rounded-3xl p-7 hover:-translate-y-1 transition border border-white/10" data-aos="zoom-in" data-aos-delay="300">
+            <i class="fa-solid fa-arrows-rotate text-brand-orange text-3xl"></i>
+            <h3 class="mt-4 font-black text-lg">Atualização Vitalícia</h3>
+            <p class="mt-2 text-white/70 text-sm leading-relaxed">Novas aulas e temas gravados sempre que houver mudança legislativa e peças mensais.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROFESSOR -->
+    <section class="relative py-16 sm:py-20">
+        <div class="absolute inset-0 bg-cover bg-[position:80%_20%]" id="teacherBg"></div>
+
+      <div class="absolute inset-0 bg-gradient-to-r from-black/95 via-black/80 to-black/25"></div>
+
+      <div class="relative z-10 max-w-6xl mx-auto px-4 grid lg:grid-cols-12 gap-10 items-center">
+        <div class="lg:col-span-7" data-aos="fade-right">
+          <span class="inline-block text-brand-orange font-extrabold uppercase tracking-[0.2em] text-xs border-b border-brand-orange/50 pb-1">
+            Quem será seu mentor
+          </span>
+          <h2 class="mt-4 text-3xl sm:text-4xl font-black uppercase">
+            Dr. Wesley <span class="text-brand-orange">Campores</span>
+          </h2>
+          <p class="mt-3 text-white/75 leading-relaxed">
+            Advogado Trabalhista com mais de <strong>12 anos de atuação</strong>, especialista em direito do trabalho.
+            Conteúdo focado na rotina real do escritório: estratégia, prova, audiência e execução.
+          </p>
+
+          <div class="mt-6 grid sm:grid-cols-2 gap-3">
+            <div class="glass rounded-2xl p-4">
+              <p class="font-extrabold"><i class="fa-solid fa-briefcase text-brand-orange mr-2"></i>Casos reais</p>
+              <p class="text-white/70 text-sm">Modelos e materiais aplicáveis</p>
+            </div>
+            <div class="glass rounded-2xl p-4">
+              <p class="font-extrabold"><i class="fa-solid fa-handshake text-brand-orange mr-2"></i>Atendimento</p>
+              <p class="text-white/70 text-sm">Roteiro e estrutura para clientes</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5" data-aos="fade-left">
+          <div class="glass rounded-3xl p-7 shadow-soft border border-white/10">
+            <h3 class="font-black uppercase text-lg">Resumo do que você domina</h3>
+            <ul class="mt-4 space-y-3 text-white/75">
+              <li class="flex gap-3"><i class="fa-solid fa-check text-brand-orange mt-1"></i> Ação, defesa, audiência e recursos</li>
+              <li class="flex gap-3"><i class="fa-solid fa-check text-brand-orange mt-1"></i> Cálculos trabalhistas e valor dos pedidos</li>
+              <li class="flex gap-3"><i class="fa-solid fa-check text-brand-orange mt-1"></i> Execução (Sisbajud, Renajud, Infojud etc.)</li>
+              <li class="flex gap-3"><i class="fa-solid fa-check text-brand-orange mt-1"></i> Marketing jurídico e escritório digital</li>
+            </ul>
+
+            <div class="mt-6 flex flex-col sm:flex-row gap-3">
+              <a href="#investimento" class="w-full inline-flex items-center justify-center gap-2 px-5 py-4 rounded-2xl bg-brand-orange font-black uppercase hover:scale-[1.02] transition shadow-soft">
+                <i class="fa-solid fa-bolt"></i> Quero entrar
+              </a>
+              <a id="btnTeacherWpp" href="#" class="w-full inline-flex items-center justify-center gap-2 px-5 py-4 rounded-2xl bg-brand-green font-black uppercase hover:scale-[1.02] transition shadow-soft">
+                <i class="fa-brands fa-whatsapp text-xl"></i> Dúvidas
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-brand-dark to-transparent"></div>
+    </section>
+
+    <!-- CRONOGRAMA -->
+    <section id="cronograma" class="py-16 sm:py-20 bg-brand-dark2">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="text-center max-w-3xl mx-auto">
+          <span class="inline-block text-brand-orange font-extrabold uppercase tracking-[0.2em] text-xs border-b border-brand-orange/50 pb-1" data-aos="fade-up">
+            Cronograma de aulas
+          </span>
+          <h2 class="mt-4 text-3xl sm:text-4xl font-black uppercase" data-aos="fade-up" data-aos-delay="60">
+            Tudo organizado em <span class="text-brand-orange">10 módulos</span>
+          </h2>
+          <p class="mt-4 text-white/70 leading-relaxed" data-aos="fade-up" data-aos-delay="120">
+            Clique e expanda cada módulo. Os módulos grandes têm rolagem interna para manter a página leve.
+          </p>
+        </div>
+
+        <div class="mt-10 grid gap-4">
+          <!-- MOD 1 -->
+          <details class="glass rounded-2xl p-6 border border-white/10" data-aos="fade-up">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
+              <div>
+                <p class="text-xs uppercase tracking-[0.2em] text-white/60 font-extrabold">Módulo 1</p>
+                <p class="text-xl font-black">Boas-vindas a todos</p>
+              </div>
+              <i class="fa-solid fa-chevron-down text-white/60"></i>
+            </summary>
+            <div class="mt-4 text-white/75">
+              <ul class="list-disc pl-5 space-y-1">
+                <li>Apresentação e boas-vindas</li>
+              </ul>
+            </div>
+          </details>
+
+          <!-- MOD 2 -->
+          <details class="glass rounded-2xl p-6 border border-white/10" data-aos="fade-up">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
+              <div>
+                <p class="text-xs uppercase tracking-[0.2em] text-white/60 font-extrabold">Módulo 2</p>
+                <p class="text-xl font-black">Advogando para empregados</p>
+              </div>
+              <i class="fa-solid fa-chevron-down text-white/60"></i>
+            </summary>
+
+            <div class="mt-4 grid lg:grid-cols-2 gap-4">
+              <div class="rounded-2xl bg-black/25 border border-white/10 p-4">
+                <p class="font-extrabold uppercase text-sm mb-2 text-brand-orange">Conteúdos</p>
+                <div class="max-h-80 overflow-auto nice-scroll pr-2 pl-3">
+                  <ol class="list-decimal pl-5 space-y-1 text-white/75 text-sm">
+                    <li>Como advogar em ações de reconhecimento de vínculo de emprego</li>
+                    <li>Como advogar em horas extras</li>
+                    <li>Como advogar em rescisão indireta</li>
+                    <li>Como advogar em estabilidade de gestante</li>
+                    <li>Como advogar em insalubridade</li>
+                    <li>Como advogar em ações envolvendo justa causa</li>
+                    <li>Como advogar em ações envolvendo empresa em recuperação judicial</li>
+                    <li>Como advogar em pedido de periculosidade</li>
+                    <li>Como advogar em reclamação envolvendo terceirização</li>
+                    <li>Como advogar em reclamação envolvendo grupo econômico</li>
+                    <li>Como advogar em equiparação salarial</li>
+                    <li>Como advogar em dano moral</li>
+                    <li>Como advogar em adicional de transferência</li>
+                    <li>Como advogar em exceção de incompetência territorial</li>
+                    <li>Como preparar embargos de declaração</li>
+                    <li>Como preparar recurso ordinário</li>
+                    <li>Prova</li>
+                    <li>Ônus da prova</li>
+                    <li>Da prova testemunhal</li>
+                    <li>Das razões finais</li>
+                    <li>Atendimento ao cliente</li>
+                    <li>Execução de ofício</li>
+                    <li>Como advogar em trabalho insalubre da gestante</li>
+                    <li>Como advogar em sucessão empresarial</li>
+                    <li>Negociado sobre o Legislado</li>
+                    <li>Ultratividade da Norma</li>
+                    <li>Como advogar em estabilidade representante dos empregados</li>
+                    <li>Contagem de Prazos</li>
+                    <li>Justiça Gratuita</li>
+                    <li>Honorários Periciais</li>
+                    <li>Revelia e Arquivamento</li>
+                    <li>Como advogar em acidente de trabalho e doença ocupacional</li>
+                    <li>Como advogar em intervalo intrajornada</li>
+                    <li>Como advogar em intervalo interjornada</li>
+                    <li>Como advogar em incidente da desconsideração da pessoa jurídica – IDPJ</li>
+                  </ol>
+                </div>
+              </div>
+
+              <div class="rounded-2xl bg-black/25 border border-white/10 p-4">
+                <p class="font-extrabold uppercase text-sm mb-2 text-brand-orange">Aplicação prática</p>
+                <ul class="space-y-3 text-white/75 text-sm">
+                  <li class="flex gap-3"><i class="fa-solid fa-check text-brand-orange mt-1"></i> Estrutura de pedido, prova e estratégia por tema</li>
+                  <li class="flex gap-3"><i class="fa-solid fa-check text-brand-orange mt-1"></i> Pontos críticos que mais geram erro e como evitar</li>
+                  <li class="flex gap-3"><i class="fa-solid fa-check text-brand-orange mt-1"></i> Rotina: atendimento → petição → audiência → execução</li>
+                </ul>
+              </div>
+            </div>
+          </details>
+
+          <!-- MOD 3 -->
+          <details class="glass rounded-2xl p-6 border border-white/10" data-aos="fade-up">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
+              <div>
+                <p class="text-xs uppercase tracking-[0.2em] text-white/60 font-extrabold">Módulo 3</p>
+                <p class="text-xl font-black">Advogando para empresas</p>
+              </div>
+              <i class="fa-solid fa-chevron-down text-white/60"></i>
+            </summary>
+
+            <div class="mt-4 rounded-2xl bg-black/25 border border-white/10 p-4">
+              <ol class="list-decimal pl-5 space-y-1 text-white/75 text-sm">
+                <li>Como preparar uma contestação</li>
+                <li>Como preparar uma reconvenção</li>
+                <li>Como impugnar valor da causa</li>
+                <li>Como preparar embargos de declaração</li>
+                <li>Como preparar recurso ordinário</li>
+                <li>Honorários de sucumbência</li>
+                <li>Réplica em audiência</li>
+                <li>Razões finais</li>
+                <li>Conceito de empregador</li>
+                <li>Conceito de grupo econômico</li>
+                <li>Honorários e contrato</li>
+                <li>Salário e remuneração</li>
+                <li>Prescrição bienal e quinquenal</li>
+                <li>Agravo de petição</li>
+                <li>Agravo de instrumento</li>
+                <li>Recurso adesivo</li>
+                <li>Embargos de terceiro</li>
+                <li>Consignação em pagamento</li>
+                <li>Preliminar de inépcia da inicial</li>
+                <li>Prejudicial de mérito</li>
+              </ol>
+            </div>
+          </details>
+
+          <!-- MOD 4 -->
+          <details class="glass rounded-2xl p-6 border border-white/10" data-aos="fade-up">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
+              <div>
+                <p class="text-xs uppercase tracking-[0.2em] text-white/60 font-extrabold">Módulo 4</p>
+                <p class="text-xl font-black">Prática em audiência</p>
+              </div>
+              <i class="fa-solid fa-chevron-down text-white/60"></i>
+            </summary>
+
+            <div class="mt-4 rounded-2xl bg-black/25 border border-white/10 p-4">
+              <div class="max-h-80 overflow-auto nice-scroll pr-2 pl-3">
+                <ol class="list-decimal pl-5 space-y-1 text-white/75 text-sm">
+                  <li>Atos preparatórios</li>
+                  <li>Audiência por videoconferência</li>
+                  <li>Horário das audiências</li>
+                  <li>Importância dos registros das audiências nas atas</li>
+                  <li>Aditamento da inicial</li>
+                  <li>Do poder de polícia do magistrado</li>
+                  <li>Como juntar a defesa no PJe</li>
+                  <li>Assento das partes na audiência</li>
+                  <li>Exceção de incompetência territorial</li>
+                  <li>Das provas</li>
+                  <li>Do ônus da prova e inversão do ônus</li>
+                  <li>Prova testemunhal</li>
+                  <li>Das razões finais</li>
+                  <li>Contradita de testemunha</li>
+                  <li>Momento de ouvir o preposto</li>
+                  <li>Aditamento da inicial</li>
+                  <li>Protocolo da defesa</li>
+                  <li>Exceção de suspeição e impedimento</li>
+                  <li>Nomeação perito e encerramento</li>
+                  <li>Mandato tácito</li>
+                  <li>Ônus da prova</li>
+                  <li>Depoimento pessoal</li>
+                  <li>Prova testemunhal</li>
+                </ol>
+              </div>
+            </div>
+          </details>
+
+          <!-- MOD 5 -->
+          <details class="glass rounded-2xl p-6 border border-white/10" data-aos="fade-up">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
+              <div>
+                <p class="text-xs uppercase tracking-[0.2em] text-white/60 font-extrabold">Módulo 5</p>
+                <p class="text-xl font-black">Marketing jurídico e escritório digital</p>
+              </div>
+              <i class="fa-solid fa-chevron-down text-white/60"></i>
+            </summary>
+            <div class="mt-4 rounded-2xl bg-black/25 border border-white/10 p-4">
+              <ol class="list-decimal pl-5 space-y-1 text-white/75 text-sm">
+                <li>Escritório digital</li>
+                <li>Ferramentas do digital</li>
+                <li>Apresentações marketing jurídico</li>
+                <li>Conceitos de marketing</li>
+                <li>Marketing de conteúdo</li>
+                <li>Estratégia de tráfego (Google Ads e Meta Ads)</li>
+                <li>Script de conversão no WhatsApp</li>
+              </ol>
+            </div>
+          </details>
+
+          <!-- MOD 6 -->
+          <details class="glass rounded-2xl p-6 border border-white/10" data-aos="fade-up">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
+              <div>
+                <p class="text-xs uppercase tracking-[0.2em] text-white/60 font-extrabold">Módulo 6</p>
+                <p class="text-xl font-black">Direito material + modelos (casos reais)</p>
+              </div>
+              <i class="fa-solid fa-chevron-down text-white/60"></i>
+            </summary>
+            <div class="mt-4 rounded-2xl bg-black/25 border border-white/10 p-4">
+              <ol class="list-decimal pl-5 space-y-1 text-white/75 text-sm">
+                <li>Grupo econômico</li>
+                <li>Prova do acúmulo e desvio de função</li>
+                <li>Princípios trabalhistas</li>
+                <li>Terceirização</li>
+                <li>Empregada doméstica (LC 150/2015)</li>
+                <li>Intervalo intrajornada</li>
+                <li>Aviso prévio (Lei 12.506/11)</li>
+                <li>Art. 477 da CLT após a reforma</li>
+                <li>Horas extras</li>
+              </ol>
+            </div>
+          </details>
+
+          <!-- MOD 7 -->
+          <details class="glass rounded-2xl p-6 border border-white/10" data-aos="fade-up">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
+              <div>
+                <p class="text-xs uppercase tracking-[0.2em] text-white/60 font-extrabold">Módulo 7</p>
+                <p class="text-xl font-black">Ritos processuais</p>
+              </div>
+              <i class="fa-solid fa-chevron-down text-white/60"></i>
+            </summary>
+            <div class="mt-4 rounded-2xl bg-black/25 border border-white/10 p-4">
+              <ol class="list-decimal pl-5 space-y-1 text-white/75 text-sm">
+                <li>Rito ordinário</li>
+                <li>Rito sumário</li>
+                <li>Rito sumaríssimo</li>
+                <li>Fase recursal</li>
+                <li>Execução trabalhista</li>
+              </ol>
+            </div>
+          </details>
+
+          <!-- MOD 8 -->
+          <details class="glass rounded-2xl p-6 border border-white/10" data-aos="fade-up">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
+              <div>
+                <p class="text-xs uppercase tracking-[0.2em] text-white/60 font-extrabold">Módulo 8</p>
+                <p class="text-xl font-black">Como fazer cálculos trabalhistas</p>
+              </div>
+              <i class="fa-solid fa-chevron-down text-white/60"></i>
+            </summary>
+            <div class="mt-4 rounded-2xl bg-black/25 border border-white/10 p-4">
+              <div class="max-h-80 overflow-auto nice-scroll pr-2 pl-3">
+                <ol class="list-decimal pl-5 space-y-1 text-white/75 text-sm">
+                  <li>Artigo 840 da CLT</li>
+                  <li>Aviso prévio</li>
+                  <li>Décimo terceiro salário</li>
+                  <li>Férias + 1/3</li>
+                  <li>FGTS</li>
+                  <li>Horas extras</li>
+                  <li>Artigo 467 da CLT</li>
+                  <li>Artigo 477 da CLT</li>
+                  <li>Valor dos pedidos</li>
+                  <li>Honorários de sucumbência</li>
+                  <li>Adicional de insalubridade</li>
+                  <li>Adicional de periculosidade</li>
+                  <li>Adicional noturno</li>
+                  <li>Estabilidade (gestante, CIPA e acidente de trabalho)</li>
+                </ol>
+              </div>
+            </div>
+          </details>
+
+          <!-- MOD 9 -->
+          <details class="glass rounded-2xl p-6 border border-white/10" data-aos="fade-up">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
+              <div>
+                <p class="text-xs uppercase tracking-[0.2em] text-white/60 font-extrabold">Módulo 9</p>
+                <p class="text-xl font-black">Fase de execução trabalhista</p>
+              </div>
+              <i class="fa-solid fa-chevron-down text-white/60"></i>
+            </summary>
+
+            <div class="mt-4 rounded-2xl bg-black/25 border border-white/10 p-4">
+              <div class="max-h-80 overflow-auto nice-scroll pr-2 pl-3">
+                <ol class="list-decimal pl-5 space-y-1 text-white/75 text-sm">
+                  <li>Sisbajud digital</li>
+                  <li>Sisbajud teimosinha</li>
+                  <li>Renajud</li>
+                  <li>Infojud – DOI</li>
+                  <li>Sniper</li>
+                  <li>Simba</li>
+                  <li>Censec</li>
+                  <li>Serasajud</li>
+                  <li>Cnib</li>
+                  <li>Prevjud</li>
+                  <li>Suspensão da CNH e passaporte</li>
+                  <li>Cancelamento de cartões de crédito</li>
+                  <li>Penhora de milhas aéreas e de criptoativos</li>
+                  <li>Bloquear a chave PIX do devedor</li>
+                </ol>
+              </div>
+            </div>
+          </details>
+
+          <!-- MOD 10 -->
+          <details class="glass rounded-2xl p-6 border border-white/10" data-aos="fade-up">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
+              <div>
+                <p class="text-xs uppercase tracking-[0.2em] text-white/60 font-extrabold">Módulo 10</p>
+                <p class="text-xl font-black">Princípios do direito do trabalho</p>
+              </div>
+              <i class="fa-solid fa-chevron-down text-white/60"></i>
+            </summary>
+            <div class="mt-4 rounded-2xl bg-black/25 border border-white/10 p-4">
+              <ol class="list-decimal pl-5 space-y-1 text-white/75 text-sm">
+                <li>Princípio da informalidade</li>
+                <li>Princípio da fungibilidade</li>
+                <li>Princípio do duplo grau de jurisdição</li>
+                <li>Princípio da norma mais favorável</li>
+                <li>Princípio da indisponibilidade</li>
+                <li>Princípio da primazia da realidade</li>
+                <li>Princípio da irrecorribilidade imediata</li>
+              </ol>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- BÔNUS -->
+    <section id="bonus" class="py-16 sm:py-20 bg-brand-dark">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="text-center max-w-3xl mx-auto">
+          <span class="inline-block text-brand-orange font-extrabold uppercase tracking-[0.2em] text-xs border-b border-brand-orange/50 pb-1" data-aos="fade-up">
+            Bônus
+          </span>
+          <h2 class="mt-4 text-3xl sm:text-4xl font-black uppercase" data-aos="fade-up" data-aos-delay="60">
+            Você ainda leva <span class="text-brand-orange">2 bônus</span>
+          </h2>
+          <p class="mt-4 text-white/70 leading-relaxed" data-aos="fade-up" data-aos-delay="120">
+            Extras para acelerar seus resultados e encurtar o caminho.
+          </p>
+        </div>
+
+        <div class="mt-10 grid lg:grid-cols-2 gap-6">
+          <div class="glass rounded-3xl p-7 border border-white/10 shadow-soft" data-aos="fade-right">
+            <div class="flex items-start gap-4">
+              <div class="h-12 w-12 rounded-2xl bg-brand-orange/15 border border-brand-orange/35 flex items-center justify-center">
+                <i class="fa-solid fa-users text-brand-orange text-xl"></i>
+              </div>
+              <div>
+                <p class="font-black uppercase text-lg">Bônus 1</p>
+                <p class="mt-1 text-white/75"><strong>2 meses de mentoria</strong> para os <strong>20 primeiros inscritos</strong> (grupo fechado no WhatsApp ou Zoom/Google Meet).</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass rounded-3xl p-7 border border-white/10 shadow-soft" data-aos="fade-left">
+            <div class="flex items-start gap-4">
+              <div class="h-12 w-12 rounded-2xl bg-brand-orange/15 border border-brand-orange/35 flex items-center justify-center">
+                <i class="fa-solid fa-folder-open text-brand-orange text-xl"></i>
+              </div>
+              <div>
+                <p class="font-black uppercase text-lg">Bônus 2</p>
+                <p class="mt-1 text-white/75"><strong>Kit de Petições Trabalhistas</strong> com casos reais do escritório do Dr. Wesley Campores.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-10 text-center" data-aos="zoom-in">
+          <a href="#investimento" class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl bg-brand-orange font-black uppercase hover:scale-[1.02] transition shadow-soft">
+            <i class="fa-solid fa-bolt"></i> Quero entrar com bônus
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- INVESTIMENTO -->
+    <section id="investimento" class="py-16 sm:py-20 bg-brand-dark2">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="text-center max-w-3xl mx-auto">
+          <span class="inline-block text-brand-orange font-extrabold uppercase tracking-[0.2em] text-xs border-b border-brand-orange/50 pb-1" data-aos="fade-up">
+            Investimento
+          </span>
+          <h2 class="mt-4 text-3xl sm:text-4xl font-black uppercase" data-aos="fade-up" data-aos-delay="60">
+            Garanta por <span class="text-brand-orange">R$ 997</span>
+          </h2>
+          <p class="mt-4 text-white/70 leading-relaxed" data-aos="fade-up" data-aos-delay="120">
+            De <span class="line-through">R$ 1.697,00</span> por <strong>R$ 997,00</strong>. Promoção em destaque.
+          </p>
+        </div>
+
+        <div class="mt-10 grid lg:grid-cols-12 gap-6 items-stretch">
+          <div class="lg:col-span-7 glass rounded-3xl p-8 border border-white/10 shadow-soft" data-aos="fade-right">
+            <div class="flex items-center justify-between gap-4 flex-wrap">
+              <div>
+                <p class="text-xs uppercase tracking-[0.2em] text-white/60 font-extrabold">Oferta especial</p>
+                <p class="text-2xl sm:text-3xl font-black uppercase mt-1">Jornada Trabalhista na Prática</p>
+              </div>
+
+              <div class="px-4 py-2 rounded-full bg-brand-orange/15 border border-brand-orange/35 text-brand-orange font-extrabold uppercase text-xs tracking-wider
+                          animate__animated animate__pulse animate__infinite animate__slow">
+                <i class="fa-solid fa-fire-flame-curved mr-2"></i> Promoção ativa
+              </div>
+            </div>
+
+            <div class="mt-6 grid sm:grid-cols-2 gap-4 text-white/80">
+              <div class="rounded-2xl bg-black/25 border border-white/10 p-5">
+                <p class="font-black uppercase">Você recebe</p>
+                <ul class="mt-3 space-y-2 text-sm text-white/75">
+                  <li class="flex gap-2"><i class="fa-solid fa-check text-brand-orange mt-1"></i> Acesso vitalício + atualizações</li>
+                  <li class="flex gap-2"><i class="fa-solid fa-check text-brand-orange mt-1"></i> +300 horas de aulas gravadas</li>
+                  <li class="flex gap-2"><i class="fa-solid fa-check text-brand-orange mt-1"></i> Novas peças todo mês</li>
+                  <li class="flex gap-2"><i class="fa-solid fa-check text-brand-orange mt-1"></i> Bônus: mentoria + kit petições</li>
+                </ul>
+              </div>
+
+              <div class="rounded-2xl bg-black/25 border border-white/10 p-5">
+                <p class="font-black uppercase">Modalidade</p>
+                <ul class="mt-3 space-y-2 text-sm text-white/75">
+                  <li class="flex gap-2"><i class="fa-solid fa-circle-play text-brand-orange mt-1"></i> Online e gravado</li>
+                  <li class="flex gap-2"><i class="fa-solid fa-mobile-screen-button text-brand-orange mt-1"></i> Online e offline (App Hotmart)</li>
+                  <li class="flex gap-2"><i class="fa-solid fa-key text-brand-orange mt-1"></i> Login e senha</li>
+                  <li class="flex gap-2"><i class="fa-solid fa-shield text-brand-orange mt-1"></i> Garantia de 30 dias</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="mt-6 rounded-2xl bg-gradient-to-r from-brand-orange/20 to-transparent border border-brand-orange/35 p-5">
+              <p class="text-sm text-white/80">
+                <strong>Importante:</strong> a mentoria é limitada aos <strong>20 primeiros inscritos</strong>.
+              </p>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 glass rounded-3xl p-8 border border-brand-orange/30 shadow-soft relative overflow-hidden" data-aos="fade-left">
+            <div class="absolute -top-20 -right-20 w-72 h-72 rounded-full bg-brand-orange/25 blur-3xl"></div>
+
+            <p class="text-xs uppercase tracking-[0.2em] text-white/60 font-extrabold">Preço</p>
+            <div class="mt-3">
+              <p class="text-white/70 text-sm">De <span class="line-through">R$ 1.697,00</span> por</p>
+              <p class="text-6xl font-black text-brand-orange leading-none">R$ 997</p>
+              <p class="text-white/70 text-sm mt-1">Compra segura • Acesso imediato pela Hotmart</p>
+            </div>
+
+            <a id="btnBuyNow" href="#" class="mt-6 inline-flex w-full items-center justify-center gap-2 px-6 py-4 rounded-2xl bg-brand-orange font-black uppercase hover:scale-[1.02] transition shadow-soft animate-glow">
+              <i class="fa-solid fa-lock"></i> Comprar agora
+            </a>
+
+            <a id="btnWppSales" href="#" class="mt-3 inline-flex w-full items-center justify-center gap-2 px-6 py-4 rounded-2xl bg-brand-green font-black uppercase hover:scale-[1.02] transition shadow-soft">
+              <i class="fa-brands fa-whatsapp text-xl"></i> Falar com suporte
+            </a>
+
+            <div class="mt-6 rounded-2xl bg-black/25 border border-white/10 p-5">
+              <p class="font-black uppercase text-sm">Garantia 30 dias</p>
+              <p class="mt-2 text-white/75 text-sm">Você tem 30 dias para testar o curso. Se não fizer sentido, solicite o reembolso conforme as regras da plataforma.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-16 sm:py-20 bg-brand-dark">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="text-center max-w-3xl mx-auto">
+          <span class="inline-block text-brand-orange font-extrabold uppercase tracking-[0.2em] text-xs border-b border-brand-orange/50 pb-1" data-aos="fade-up">
+            Dúvidas frequentes
+          </span>
+          <h2 class="mt-4 text-3xl sm:text-4xl font-black uppercase" data-aos="fade-up" data-aos-delay="60">
+            FAQ
+          </h2>
+        </div>
+
+        <div class="mt-10 grid gap-4">
+          <details class="glass rounded-2xl p-6 border border-white/10" data-aos="fade-up">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
+              <p class="font-extrabold">O curso é ao vivo?</p>
+              <i class="fa-solid fa-chevron-down text-white/60"></i>
+            </summary>
+            <p class="mt-3 text-white/75 text-sm leading-relaxed">
+              Não. É um curso <strong>online e gravado</strong>, com acesso vitalício e atualizações.
+            </p>
+          </details>
+
+          <details class="glass rounded-2xl p-6 border border-white/10" data-aos="fade-up">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
+              <p class="font-extrabold">Onde eu assisto?</p>
+              <i class="fa-solid fa-chevron-down text-white/60"></i>
+            </summary>
+            <p class="mt-3 text-white/75 text-sm leading-relaxed">
+              Pela Hotmart (login e senha). Você pode assistir pelo computador e pelo celular e baixar materiais.
+            </p>
+          </details>
+
+          <details class="glass rounded-2xl p-6 border border-white/10" data-aos="fade-up">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
+              <p class="font-extrabold">Tem garantia?</p>
+              <i class="fa-solid fa-chevron-down text-white/60"></i>
+            </summary>
+            <p class="mt-3 text-white/75 text-sm leading-relaxed">
+              Sim. <strong>Garantia de 30 dias</strong>.
+            </p>
+          </details>
+
+          <details class="glass rounded-2xl p-6 border border-white/10" data-aos="fade-up">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
+              <p class="font-extrabold">A mentoria é para todos?</p>
+              <i class="fa-solid fa-chevron-down text-white/60"></i>
+            </summary>
+            <p class="mt-3 text-white/75 text-sm leading-relaxed">
+              A mentoria é um bônus exclusivo para os <strong>20 primeiros inscritos</strong>.
+            </p>
+          </details>
+        </div>
+
+        <div class="mt-10 text-center" data-aos="zoom-in">
+          <a href="#investimento" class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl bg-brand-orange font-black uppercase hover:scale-[1.02] transition shadow-soft">
+            <i class="fa-solid fa-bolt"></i> Quero garantir por R$ 997
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 border-t border-white/10 bg-black">
+      <div class="max-w-6xl mx-auto px-4 text-center">
+        <p class="font-extrabold">Jornada Trabalhista na Prática</p>
+        <p class="text-white/60 text-sm mt-2">© 2026 • Todos os direitos reservados</p>
+      </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <div class="fixed right-4 bottom-4 z-[80] flex flex-col items-end gap-2">
+      <div class="hidden sm:block bg-white text-black text-sm px-3 py-2 rounded-xl shadow-soft">
+        Tem alguma dúvida? Clique e fale conosco
+      </div>
+      <a id="btnWppFloat" href="#" target="_blank"
+         class="h-14 w-14 rounded-full bg-brand-green flex items-center justify-center text-2xl shadow-soft hover:scale-110 transition"
+         aria-label="Falar no WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+      </a>
+    </div>
+
+    <!-- Bottom sticky bar -->
+    <div id="bottomBar" class="fixed inset-x-0 bottom-0 z-[75] hidden">
+      <div class="bg-black/75 backdrop-blur border-t border-white/10">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+          <div class="leading-tight">
+            <p class="font-extrabold">Promo: <span class="text-brand-orange">R$ 997</span> <span class="text-white/50 line-through text-sm ml-2">R$ 1.697</span></p>
+            <p class="text-xs text-white/60">Acesso vitalício + bônus</p>
+          </div>
+          <a href="#investimento" class="px-5 py-3 rounded-xl bg-brand-orange font-black uppercase text-sm hover:scale-[1.02] transition shadow-soft">
+            Comprar agora
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- AOS JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <script>
+    // ====== Set backgrounds / links
+    document.getElementById('heroBg').style.backgroundImage = `url('${HERO_BG_URL}')`;
+    document.getElementById('teacherBg').style.backgroundImage = `url('${TEACHER_BG_URL}')`;
+
+    const wppText = encodeURIComponent("Olá! Tenho uma dúvida sobre o curso Jornada Trabalhista na Prática.");
+    const wppLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${wppText}`;
+
+    const setHref = (id, href) => { const el = document.getElementById(id); if (el) el.href = href; };
+    setHref("btnHeroWpp", wppLink);
+    setHref("btnTeacherWpp", wppLink);
+    setHref("btnWppSales", wppLink);
+    setHref("btnWppFloat", wppLink);
+
+    // botão comprar
+    const buyNow = document.getElementById("btnBuyNow");
+    if (buyNow) buyNow.href = PURCHASE_URL;
+
+    // ====== Mobile menu
+    const btnMobileMenu = document.getElementById("btnMobileMenu");
+    const mobileMenu = document.getElementById("mobileMenu");
+    btnMobileMenu?.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+    mobileMenu?.querySelectorAll("a").forEach(a => {
+      a.addEventListener("click", () => mobileMenu.classList.add("hidden"));
+    });
+
+    // ====== AOS init
+    AOS.init({
+      duration: 700,
+      easing: "ease-out-cubic",
+      once: true
+    });
+
+    // ====== Countdown (São Paulo -03:00)
+    // Launch: 29/01/2026 20:00
+    const launch = new Date("2026-01-29T20:00:00-03:00").getTime();
+    const elD = document.getElementById("d");
+    const elH = document.getElementById("h");
+    const elM = document.getElementById("m");
+    const elS = document.getElementById("s");
+    const timerMsg = document.getElementById("timerMsg");
+
+    function pad(n){ return String(n).padStart(2,"0"); }
+
+    function tick(){
+      const now = Date.now();
+      const diff = launch - now;
+
+      if (diff <= 0) {
+        elD.textContent = "00"; elH.textContent = "00"; elM.textContent = "00"; elS.textContent = "00";
+        timerMsg.classList.remove("hidden");
+        timerMsg.textContent = "O lançamento já começou. Clique em “Comprar agora” para garantir seu acesso.";
+        return;
+      }
+
+      const days = Math.floor(diff / (1000*60*60*24));
+      const hours = Math.floor((diff / (1000*60*60)) % 24);
+      const mins = Math.floor((diff / (1000*60)) % 60);
+      const secs = Math.floor((diff / 1000) % 60);
+
+      elD.textContent = pad(days);
+      elH.textContent = pad(hours);
+      elM.textContent = pad(mins);
+      elS.textContent = pad(secs);
+    }
+    tick();
+    setInterval(tick, 1000);
+
+    // ====== Bottom bar appears after scroll
+    const bottomBar = document.getElementById("bottomBar");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 520) bottomBar.classList.remove("hidden");
+      else bottomBar.classList.add("hidden");
+    });
+
+    // ====== Improve mobile hero background
+    // (foca no advogado e não “estoura” o texto)
+    function adjustHeroBg(){
+      const hero = document.getElementById('heroBg');
+      if (!hero) return;
+      if (window.innerWidth < 768) {
+        hero.style.backgroundPosition = "75% top";
+        // overlay mais forte no mobile
+        hero.nextElementSibling.style.background = "linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.92) 40%, rgba(0,0,0,1) 100%)";
+      } else {
+        hero.style.backgroundPosition = "right center";
+        hero.nextElementSibling.style.background = "linear-gradient(to right, rgba(0,0,0,0.95), rgba(0,0,0,0.80), rgba(0,0,0,0.20))";
+      }
+    }
+    adjustHeroBg();
+    window.addEventListener("resize", adjustHeroBg);
+  </script>
+</body>
+</html>
