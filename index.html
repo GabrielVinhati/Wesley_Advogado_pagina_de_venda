@@ -179,44 +179,37 @@
                 </div>
               </div>
       
-              <!-- Countdown (sem rolagem e sem quebrar) -->
-<div class="mt-8 glass rounded-2xl p-5 border border-brand-orange/25" data-aos="fade-up">
-    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-      <div>
-        <p class="text-xs uppercase tracking-[0.2em] text-white/60 font-extrabold">LANÇAMENTO SEMENTE</p>
-        <p class="text-lg font-extrabold">29/01/2026 às 20:00 (quinta-feira)</p>
+<!-- Countdown 15min (reinicia ao recarregar) -->
+<div class="mt-8 glass rounded-2xl px-6 py-5 sm:p-5 border border-brand-orange/25" data-aos="fade-up">
+  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+    <!-- ✅ centraliza o texto no mobile -->
+    <div class="text-center sm:text-left">
+      <p class="text-xs uppercase tracking-[0.2em] text-white/60 font-extrabold">CONTAGEM REGRESSIVA</p>
+      <p class="text-lg font-extrabold">Finalize sua compra antes de zerar</p>
+      <p class="text-sm text-white/60 mt-1">Ao terminar, abriremos o checkout automaticamente.</p>
+    </div>
+
+    <!-- ✅ centraliza os números no mobile e evita ficar “afastado” -->
+    <div class="w-full sm:w-auto flex items-center justify-center sm:justify-start gap-3 sm:gap-3">
+      <div class="text-center px-5 py-3 sm:px-4 sm:py-3 rounded-xl bg-brand-orange/10 border border-brand-orange/35 min-w-[96px] sm:min-w-[90px]">
+        <span id="m" class="block text-3xl sm:text-3xl font-black text-brand-orange leading-none">15</span>
+        <span class="text-[11px] sm:text-[11px] uppercase tracking-wider text-white/80">min</span>
       </div>
-  
-      <!-- ✅ 1 linha sempre, sem scroll: compacto no mobile -->
-      <div class="flex items-center justify-between sm:justify-start gap-2 sm:gap-3">
-        <div class="text-center px-3 py-2 sm:px-4 sm:py-3 rounded-xl bg-brand-orange/10 border border-brand-orange/35 min-w-[68px] sm:min-w-[84px]">
-          <span id="d" class="block text-xl sm:text-2xl font-black text-brand-orange leading-none">--</span>
-          <span class="text-[10px] sm:text-[11px] uppercase tracking-wider text-white/80">dias</span>
-        </div>
-  
-        <div class="text-center px-3 py-2 sm:px-4 sm:py-3 rounded-xl bg-brand-orange/10 border border-brand-orange/35 min-w-[68px] sm:min-w-[84px]">
-          <span id="h" class="block text-xl sm:text-2xl font-black text-brand-orange leading-none">--</span>
-          <span class="text-[10px] sm:text-[11px] uppercase tracking-wider text-white/80">horas</span>
-        </div>
-  
-        <div class="text-center px-3 py-2 sm:px-4 sm:py-3 rounded-xl bg-brand-orange/10 border border-brand-orange/35 min-w-[68px] sm:min-w-[84px]">
-          <span id="m" class="block text-xl sm:text-2xl font-black text-brand-orange leading-none">--</span>
-          <span class="text-[10px] sm:text-[11px] uppercase tracking-wider text-white/80">min</span>
-        </div>
-  
-        <div class="text-center px-3 py-2 sm:px-4 sm:py-3 rounded-xl bg-brand-orange/10 border border-brand-orange/35 min-w-[68px] sm:min-w-[84px]">
-          <span id="s" class="block text-xl sm:text-2xl font-black text-brand-orange leading-none">--</span>
-          <span class="text-[10px] sm:text-[11px] uppercase tracking-wider text-white/80">seg</span>
-        </div>
+
+      <div class="text-center px-5 py-3 sm:px-4 sm:py-3 rounded-xl bg-brand-orange/10 border border-brand-orange/35 min-w-[96px] sm:min-w-[90px]">
+        <span id="s" class="block text-3xl sm:text-3xl font-black text-brand-orange leading-none">00</span>
+        <span class="text-[11px] sm:text-[11px] uppercase tracking-wider text-white/80">seg</span>
       </div>
     </div>
-  
-    <p id="timerMsg" class="mt-3 text-sm text-white/70 hidden"></p>
   </div>
+
+  <p id="timerMsg" class="mt-3 text-sm text-white/70 hidden"></p>
+</div>
+
   
       
               <!-- CTAs -->
-              <div class="mt-8 flex flex-col sm:flex-row gap-3 sm:items-center">
+              <div class="mt-8 flex flex-col sm:flex-row gap-3 sm:items-center" style="text-align: center;">
                 <a href="#investimento"
                    class="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-2xl bg-brand-orange font-black uppercase tracking-wide hover:scale-[1.02] transition shadow-soft">
                   <i class="fa-solid fa-cart-shopping"></i>
@@ -244,8 +237,8 @@
                 <div class="absolute -top-16 -right-20 sm:-top-20 sm:-right-24 w-56 h-56 sm:w-64 sm:h-64 rounded-full bg-brand-orange/20 blur-3xl"></div>
       
                 <div class="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-brand-orange/15 border border-brand-orange/35 text-brand-orange font-extrabold text-xs uppercase tracking-wider
-                            animate__animated animate__pulse animate__infinite animate__slow">
-                  <i class="fa-solid fa-tags"></i> Promoção ativa
+                            animate__animated animate__pulse animate__infinite animate__slow" style="text-align: center;">
+                  <i class="fa-solid fa-tags"></i> Promoção ativa <u>apenas para essa turma!</u>
                 </div>
       
                 <h3 class="mt-4 text-xl font-black uppercase">Investimento</h3>
@@ -258,7 +251,13 @@
                     <p class="text-5xl font-black text-brand-orange leading-none">R$ 997</p>
                     <p class="text-white/70 pb-1">à vista</p>
                   </div>
-      
+                  <!-- ✅ parcelamento embaixo -->
+                  <p class="mt-2 text-sm sm:text-base text-white/80 leading-tight">
+                    <span class="uppercase tracking-wider font-extrabold text-white/60">ou</span>
+                    <span class="font-extrabold text-brand-orange"> 12x</span>
+                    <span class="text-white/70"> de </span>
+                    <span class="font-extrabold">R$ 103,11</span>
+                  </p>
                   <div class="mt-4 grid gap-3">
                     <div class="flex items-start gap-3">
                       <div class="h-9 w-9 rounded-xl bg-brand-orange/15 border border-brand-orange/30 flex items-center justify-center">
@@ -292,7 +291,7 @@
                   </div>
       
                   <!-- ✅ glow só no sm+ pra não cortar no mobile -->
-                  <a id="btnCardBuy" href="#investimento"
+                  <a id="btnCardBuy" href="#investimento" style="text-align: center;"
                      class="mt-6 inline-flex w-full items-center justify-center gap-2 px-6 py-4 rounded-2xl bg-brand-orange font-black uppercase tracking-wide hover:scale-[1.02] transition shadow-soft sm:animate-glow">
                     <i class="fa-solid fa-bolt"></i> Quero entrar na Jornada
                   </a>
@@ -327,6 +326,21 @@
         <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-brand-dark to-transparent"></div>
       </section>
       
+      <!-- ✅ Card de imagem (apenas mobile) -->
+<div class="block sm:hidden bg-brand-dark2 mt-5">
+  <div class="max-w-6xl mx-auto px-4 -mt-6 pb-6">
+    <div class="rounded-3xl p-3 bg-[#f25320] shadow-soft">
+      <div class="rounded-2xl overflow-hidden border border-white/25">
+        <img
+          src="https://raw.githubusercontent.com/GabrielVinhati/Wesley_Advogado/refs/heads/main/img/Design%20sem%20nome%20(3).png"
+          alt="Prova social"
+          class="w-full h-auto block"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </div>
+</div>
 
     <!-- BENEFÍCIOS -->
     <section id="beneficios" class="py-16 sm:py-20 bg-brand-dark2">
@@ -1038,40 +1052,62 @@
       once: true
     });
 
-    // ====== Countdown (São Paulo -03:00)
-    // Launch: 29/01/2026 20:00
-    const launch = new Date("2026-01-29T20:00:00-03:00").getTime();
-    const elD = document.getElementById("d");
-    const elH = document.getElementById("h");
-    const elM = document.getElementById("m");
-    const elS = document.getElementById("s");
-    const timerMsg = document.getElementById("timerMsg");
+  // ====== Countdown 15min (reinicia ao recarregar)
+  const COUNTDOWN_SECONDS = 15 * 60;
 
-    function pad(n){ return String(n).padStart(2,"0"); }
+  const elM = document.getElementById("m");
+  const elS = document.getElementById("s");
+  const timerMsg = document.getElementById("timerMsg");
 
-    function tick(){
-      const now = Date.now();
-      const diff = launch - now;
+  let remaining = COUNTDOWN_SECONDS;
+  let timerInterval = null;
 
-      if (diff <= 0) {
-        elD.textContent = "00"; elH.textContent = "00"; elM.textContent = "00"; elS.textContent = "00";
-        timerMsg.classList.remove("hidden");
-        timerMsg.textContent = "O lançamento já começou. Clique em “Comprar agora” para garantir seu acesso.";
+  function pad2(n) { return String(n).padStart(2, "0"); }
+
+  function renderTimer() {
+    const mins = Math.floor(remaining / 60);
+    const secs = remaining % 60;
+
+    if (elM) elM.textContent = pad2(mins);
+    if (elS) elS.textContent = pad2(secs);
+  }
+
+  function finishTimer() {
+    remaining = 0;
+    renderTimer();
+
+    if (timerMsg) {
+      timerMsg.classList.remove("hidden");
+      timerMsg.innerHTML =
+        `Tempo esgotado! Abrindo o checkout... Se não abrir, ` +
+        `<a href="${PURCHASE_URL}" target="_blank" rel="noopener noreferrer" ` +
+        `class="underline font-extrabold text-brand-orange">clique aqui</a>.`;
+    }
+
+    // tenta abrir em nova guia (pode ser bloqueado por pop-up blocker)
+    window.open(PURCHASE_URL, "_blank", "noopener,noreferrer");
+  }
+
+  function startTimer() {
+    if (!elM || !elS) return;
+
+    renderTimer();
+
+    timerInterval = setInterval(() => {
+      remaining -= 1;
+
+      if (remaining <= 0) {
+        clearInterval(timerInterval);
+        finishTimer();
         return;
       }
 
-      const days = Math.floor(diff / (1000*60*60*24));
-      const hours = Math.floor((diff / (1000*60*60)) % 24);
-      const mins = Math.floor((diff / (1000*60)) % 60);
-      const secs = Math.floor((diff / 1000) % 60);
+      renderTimer();
+    }, 1000);
+  }
 
-      elD.textContent = pad(days);
-      elH.textContent = pad(hours);
-      elM.textContent = pad(mins);
-      elS.textContent = pad(secs);
-    }
-    tick();
-    setInterval(tick, 1000);
+  startTimer();
+
 
     // ====== Bottom bar appears after scroll
     const bottomBar = document.getElementById("bottomBar");
